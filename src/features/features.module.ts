@@ -6,20 +6,24 @@ import { FieldModule } from './field/field.module';
 import { NoteModule } from './note/note.module';
 import { WorkspaceModule } from './workspace/workspace.module';
 import { MeasurementModule } from './measurement/measurement.module';
+import { SeasonModule } from './season/season.module';
+import { SensorModule } from './sensor/sensor.module';
 
 const FEATURES = [
   AuthModule,
   UserModule,
+  CultureModule,
+  FieldModule,
+  NoteModule,
+  WorkspaceModule,
+  MeasurementModule,
+  SeasonModule,
 ];
 
 @Module({
   imports: [
     ...FEATURES,
-    CultureModule,
-    FieldModule,
-    NoteModule,
-    WorkspaceModule,
-    MeasurementModule,
+    SensorModule,
   ],
   exports: [
     ...FEATURES
