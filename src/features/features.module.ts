@@ -18,12 +18,12 @@ const FEATURES = [
   WorkspaceModule,
   MeasurementModule,
   SeasonModule,
+  SensorModule,
 ];
 
 @Module({
   imports: [
     ...FEATURES,
-    SensorModule,
   ],
   exports: [
     ...FEATURES

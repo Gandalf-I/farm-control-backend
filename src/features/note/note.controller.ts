@@ -1,29 +1,35 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { SeasonModel } from '@features/season/model/season.model';
-import { SeasonDto } from '@features/season/dto/season.dto';
+import { NoteService } from '@features/note/note.service';
+import { NoteModel } from '@features/note/models/note.model';
+import { NoteDto } from '@features/note/dto/note.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('note/:workspace')
+@ApiTags('Note')
+@Controller('note/:id')
 export class NoteController {
 
+  constructor(private noteService: NoteService) {
+  }
+
   @Get()
-  getNote(@Param('workspace') workspace): Promise<SeasonModel[]> {
+  getNote(@Param('id') id): Promise<NoteModel[]> {
     return null;
   }
 
   @Post()
-  addNote(@Param('workspace') workspace,
-          @Body() body: SeasonDto): Promise<SeasonModel> {
+  addNote(@Param('id') id,
+          @Body() body: NoteDto): Promise<NoteModel> {
     return null;
   }
 
   @Patch()
-  patchNote(@Param('workspace') workspace,
-            @Body() body: SeasonDto): Promise<SeasonModel> {
+  patchNote(@Param('id') id,
+            @Body() body: NoteDto): Promise<NoteModel> {
     return null;
   }
 
   @Delete()
-  deleteNote(@Param('workspace') workspace): Promise<SeasonModel> {
+  deleteNote(@Param('id') id): Promise<NoteModel> {
     return null;
   }
 }

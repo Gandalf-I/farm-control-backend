@@ -6,8 +6,10 @@ import { WorkspaceEntity } from '@features/workspace/database/workspace.entity';
 @Entity()
 export class NoteEntity extends AppBaseEntity {
 
-  @Column()
-  name: number;
+  @Column({
+    default: 'Новая запись'
+  })
+  name: string;
 
   @Column()
   lat: number;

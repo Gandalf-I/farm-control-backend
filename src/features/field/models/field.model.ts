@@ -4,7 +4,7 @@ import { FieldEntity } from '@features/field/database/field.entity';
 export class FieldModel extends BaseModel {
   name: string;
   area: number;
-  culture: string;
+  culture: number;
   lat: number[];
   lng: number[];
   sowingDate: Date;

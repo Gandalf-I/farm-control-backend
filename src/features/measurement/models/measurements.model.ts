@@ -5,7 +5,6 @@ export class MeasurementsModel extends BaseModel {
   time: Date;
   illumination: number;
   airTemp: number;
-  airCarbon: number;
   airHumidity: number;
   soilTemp: number;
   soilHumidity: number;
@@ -16,7 +15,6 @@ export class MeasurementsModel extends BaseModel {
     this.time = entity.time;
     this.illumination = entity.illumination;
     this.airTemp = entity.airTemp;
-    this.airCarbon = entity.airCarbon;
     this.airHumidity = entity.airHumidity;
     this.soilTemp = entity.soilTemp;
     this.soilHumidity = entity.soilHumidity;

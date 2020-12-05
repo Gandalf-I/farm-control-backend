@@ -1,23 +1,20 @@
-import { IsDate, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { OneToOne } from 'typeorm';
-import { WorkspaceEntity } from '@features/workspace/database/workspace.entity';
+import { IsArray, IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class FieldDto {
 
+  @IsOptional()
   @IsString()
   name: string;
 
   @IsNumber()
   area: number;
 
-  @IsOptional()
-  @OneToOne(() => WorkspaceEntity)
-  culture: number;
-
-  @ValidateNested()
+  @IsArray()
+  @IsNumber({},{each: true})
   lat: number[];
 
-  @ValidateNested()
+  @IsArray()
+  @IsNumber({},{each: true})
   lng: number[];
 
   @IsOptional()
@@ -39,4 +36,10 @@ export class FieldDto {
   @IsOptional()
   @IsNumber()
   moistureAcc: number;
+
+  @IsOptional()
+  cultureId: number
+
+  @IsOptional()
+  workspaceId: number;
 }

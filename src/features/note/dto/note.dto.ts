@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString, Max, MaxLength, Min } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 import { NoteTypeEnum } from '@features/note/enum/note-type.enum';
 
 export class NoteDto {
@@ -13,8 +13,7 @@ export class NoteDto {
   @IsNumber()
   lng: number;
 
-  @Min(NoteTypeEnum.Disease)
-  @Max(NoteTypeEnum.Other)
+  @IsEnum(NoteTypeEnum)
   type: number;
 
   @IsString()

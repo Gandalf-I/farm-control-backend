@@ -21,12 +21,12 @@ export class AuthService {
 
   async signUp(body: SignUpDto): Promise<TokenModel> {
     const user = await this.usersRepository.findOne({
-      login: body.login
+      email: body.email
     });
 
     if (user) {
       throw new HttpException(
-        'User with such login is already exist!',
+        'User with such email is already exist!',
         HttpStatus.CONFLICT
       );
     }
@@ -43,12 +43,12 @@ export class AuthService {
 
   async signIn(body: SignInDto): Promise<TokenModel> {
     const user = await this.usersRepository.findOne({
-      login: body.login
+      email: body.email
     });
 
     if (!user) {
       throw new HttpException(
-        'User with such login is not found!',
+        'User with such email is not found!',
         HttpStatus.UNAUTHORIZED
       );
     }

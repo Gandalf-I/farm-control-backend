@@ -1,7 +1,6 @@
-import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 import { AppBaseEntity } from '@shared/database/entities/base.entity';
 import { UserEntity } from '@features/user/database/user.entity';
-import { SeasonEntity } from '@features/season/database/season.entity';
 
 @Entity()
 export class WorkspaceEntity extends AppBaseEntity {
@@ -9,12 +8,13 @@ export class WorkspaceEntity extends AppBaseEntity {
   @Column()
   name: string;
 
-  @Column()
-  amount: string;
+  // @OneToMany(() => SensorEntity, sensor => sensor.id)
+  // sensorId: string;
 
-  @OneToMany(() => SeasonEntity, season => season.id)
-  season: string;
+  @Column()
+  creatorId: number;
 
   @ManyToMany(() => UserEntity)
-  user: string;
+  @JoinTable()
+  userId: number[];
 }

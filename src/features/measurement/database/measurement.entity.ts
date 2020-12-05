@@ -15,9 +15,6 @@ export class MeasurementEntity extends AppBaseEntity {
   airTemp: number;
 
   @Column()
-  airCarbon: number;
-
-  @Column()
   airHumidity: number;
 
   @Column()

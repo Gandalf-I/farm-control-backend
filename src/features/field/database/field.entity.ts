@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
 import { AppBaseEntity } from '@shared/database/entities/base.entity';
 import { WorkspaceEntity } from '@features/workspace/database/workspace.entity';
+import { CultureEntity } from '@features/culture/database/culture.entity';
 
 @Entity()
 export class FieldEntity extends AppBaseEntity {
@@ -11,13 +12,10 @@ export class FieldEntity extends AppBaseEntity {
   @Column()
   area: number;
 
-  @OneToMany(() => WorkspaceEntity, workspace => workspace.id)
-  culture: string;
-
-  @Column()
+  @Column("int", { array: true })
   lat: number[];
 
-  @Column()
+  @Column("int", { array: true })
   lng: number[];
 
   @Column()
@@ -35,7 +33,10 @@ export class FieldEntity extends AppBaseEntity {
   @Column()
   moistureAcc: number;
 
+  @OneToOne(() => CultureEntity, culture => culture.id)
+  culture: number;
+
   @ManyToOne(() => WorkspaceEntity)
-  workspace: string;
+  workspace: number;
 
 }

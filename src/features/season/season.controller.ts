@@ -2,30 +2,36 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 // import { JwtAuthGuard } from '@features/auth/guards/jwt-auth.guard';
 import { SeasonModel } from '@features/season/model/season.model';
 import { SeasonDto } from '@features/season/dto/season.dto';
+import { SeasonService } from '@features/season/season.service';
+import { ApiTags } from '@nestjs/swagger';
 
 // @UseGuards(JwtAuthGuard)
-@Controller('season/:workspace')
+@ApiTags('Season')
+@Controller('season/:id')
 export class SeasonController {
 
+  constructor(private seasonService: SeasonService) {
+  }
+
   @Get()
-  getSeason(@Param('workspace') workspace): Promise<SeasonModel[]> {
+  getSeason(@Param('id') id): Promise<SeasonModel[]> {
     return null;
   }
 
   @Post()
-  addSeason(@Param('workspace') workspace,
+  addSeason(@Param('id') id,
             @Body() body: SeasonDto): Promise<SeasonModel> {
     return null;
   }
 
   @Patch()
-  patchSeason(@Param('workspace') workspace,
+  patchSeason(@Param('id') id,
               @Body() body: SeasonDto): Promise<SeasonModel> {
     return null;
   }
 
   @Delete()
-  deleteSeason(@Param('workspace') workspace): Promise<SeasonModel> {
+  deleteSeason(@Param('id') id): Promise<SeasonModel> {
     return null;
   }
 }
