@@ -1,11 +1,10 @@
-import { IsNumber, IsString, MinLength } from 'class-validator';
+import { IsNumber, IsString, MinLength, ValidateNested } from 'class-validator';
 
 export class WorkspaceDto {
 
   @IsString()
-  @MinLength(6)
+  @MinLength(3)
   name: string;
 
-  @IsNumber()
-  creatorId: number;
+  usersId: number[]
 }

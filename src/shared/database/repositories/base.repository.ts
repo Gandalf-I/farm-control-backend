@@ -22,7 +22,7 @@ export class AppBaseRepository<T> extends Repository<T> {
 
     if (result) {
       throw new HttpException(
-        'Culture with such name is already exist!',
+        'Already exist!',
         HttpStatus.CONFLICT,
       );
     }
@@ -33,6 +33,19 @@ export class AppBaseRepository<T> extends Repository<T> {
 
     return this.findOne({ where: { id } });
   }
+
+  // async getManyById(id: number): Promise<T[]> {
+  //   const result = await this.find({});
+  //
+  //   if (!result.affected) {
+  //     throw new HttpException(
+  //       'Not Found',
+  //       HttpStatus.NOT_FOUND,
+  //     );
+  //   }
+  //
+  //   return new StatusModel(!!result.affected);
+  // }
 
   async updateByIdAndReturn(id: number, partialEntity: QueryDeepPartialEntity<T>, findOptions?: FindOneOptions<T>): Promise<T> {
     await this.update(id, partialEntity);

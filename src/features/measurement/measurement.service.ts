@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CultureRepository } from '@features/culture/database/culture.repository';
 import { CultureUpdateDto } from '@features/culture/dto/culture-update.dto';
 import { IdDto } from '@shared/dto/id.dto';
 import { StatusModel } from '@shared/models/status.model';
@@ -23,7 +22,7 @@ export class MeasurementService {
     return this.measurementRepository.insertAndReturnOne(body)
   }
 
-  async patchMeasurement(body: CultureUpdateDto): Promise<MeasurementEntity> {
+  async editMeasurement(body: CultureUpdateDto): Promise<MeasurementEntity> {
     return this.measurementRepository.updateByIdAndReturn(body.id, body);
   }
 

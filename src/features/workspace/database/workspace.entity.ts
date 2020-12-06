@@ -8,13 +8,13 @@ export class WorkspaceEntity extends AppBaseEntity {
   @Column()
   name: string;
 
-  // @OneToMany(() => SensorEntity, sensor => sensor.id)
-  // sensorId: string;
-
   @Column()
   creatorId: number;
 
-  @ManyToMany(() => UserEntity)
+  @ManyToMany(() => UserEntity, user => user.id, {
+    cascade: true,
+    eager: true,
+  })
   @JoinTable()
-  userId: number[];
+  users: UserEntity[];
 }

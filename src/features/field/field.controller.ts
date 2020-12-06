@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { FieldService } from '@features/field/field.service';
 import { FieldModel } from '@features/field/models/field.model';
 import { IdDto } from '@shared/dto/id.dto';
@@ -23,8 +23,18 @@ export class FieldController {
   }
 
   @Post()
-  async createCulture(@Body() body: FieldDto): Promise<FieldModel> {
+  async createField(@Body() body: FieldDto): Promise<FieldModel> {
     return this.fieldService.createField(body);
+  }
+
+  @Patch()
+  async editField(@Body() body: FieldDto): Promise<FieldModel> {
+    return this.fieldService.createField(body);
+  }
+
+  @Delete(':id')
+  async deleteField(@Param('id') id: IdDto): Promise<FieldModel> {
+    return this.fieldService.getField(id);
   }
 
 }

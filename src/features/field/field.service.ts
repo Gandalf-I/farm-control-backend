@@ -20,6 +20,10 @@ export class FieldService {
     return this.fieldRepository.findOne(id);
   }
 
+  // async getField(id: IdDto): Promise<FieldEntity> {
+  //   return this.fieldRepository.findOne(id);
+  // }
+
   async createField(body: FieldDto): Promise<FieldEntity> {
     return this.fieldRepository.insertAndReturnOne({
       ...body

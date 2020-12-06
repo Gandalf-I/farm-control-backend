@@ -14,4 +14,11 @@ export class UserService {
     return this.usersRepository.find();
   }
 
+  async getUserByLogin(login: string): Promise<UserModel[]> {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.login like :login', {login: `%${login}%`})
+      .getMany();
+  }
+
 }

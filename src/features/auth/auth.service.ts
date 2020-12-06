@@ -56,7 +56,7 @@ export class AuthService {
     if (!(await compare(body.password, user.password))) {
       throw new HttpException(
         'User password is incorrect!',
-        HttpStatus.UNAUTHORIZED
+        HttpStatus.BAD_REQUEST
       );
     }
 

@@ -1,9 +1,8 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { UserModel } from '@app/features/user/models/user.model';
 import { UserService } from '@app/features/user/user.service';
 import { UserEntity } from '@app/features/user/database/user.entity';
 import { User } from '@app/shared/decorators/user.decorator';
-import { JwtAuthGuard } from '@features/auth/guards/jwt-auth.guard';
 import { ApiTags } from '@nestjs/swagger';
 
 // @UseGuards(JwtAuthGuard)
@@ -18,7 +17,11 @@ export class UserController {
     return new UserModel(user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Get('login')
+  async getUserByLogin(@Query('login') login): Promise<UserModel[]> {
+    return await this.userService.getUserByLogin(login) || [];
+  }
+
   @Get('all')
   async getAllUser(): Promise<UserModel[]> {
     return this.userService.getAllUser();

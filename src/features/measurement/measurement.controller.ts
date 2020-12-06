@@ -5,7 +5,7 @@ import { MeasurementsModel } from '@features/measurement/models/measurements.mod
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Measurement')
-@Controller('measurement/:id')
+@Controller('measurement')
 export class MeasurementController {
 
   constructor(private measurementService: MeasurementService) {

@@ -1,7 +1,7 @@
 import { BaseModel } from '@shared/models/base.model';
 import { CultureEntity } from '@features/culture/database/culture.entity';
 
-export class Culture1Dto extends BaseModel {
+export class CultureModel extends BaseModel {
   name: string;
   baseTemperature: number;
 
