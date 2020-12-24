@@ -11,20 +11,23 @@ export class NoteEntity extends AppBaseEntity {
   })
   name: string;
 
-  @Column()
-  lat: number;
+  @Column({type: 'real'})
+  lat: string;
 
-  @Column()
-  lng: number;
+  @Column({type: 'real'})
+  lng: string;
 
   @Column('enum', {
-    enum: NoteTypeEnum
+    enum: NoteTypeEnum,
+    default: NoteTypeEnum.Other
   })
-  type: number;
+  type: NoteTypeEnum;
 
   @Column()
   comment: string;
 
-  @ManyToOne(() => WorkspaceEntity)
-  workspace: string;
+  @ManyToOne(() => WorkspaceEntity, workspace => workspace.id, {
+    eager: true
+  })
+  workspace: WorkspaceEntity;
 }

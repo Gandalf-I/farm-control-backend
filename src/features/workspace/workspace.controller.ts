@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { WorkspaceService } from '@features/workspace/workspace.service';
 import { WorkspaceModel } from '@features/workspace/models/workspace.model';
 import { WorkspaceDto } from '@features/workspace/dto/workspace.dto';
@@ -9,6 +9,7 @@ import { User } from '@shared/decorators/user.decorator';
 import { UserEntity } from '@features/user/database/user.entity';
 import { JwtAuthGuard } from '@features/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @ApiTags('Workspace')
 @Controller('workspace')
 export class WorkspaceController {
@@ -16,7 +17,7 @@ export class WorkspaceController {
   constructor(private workspaceService: WorkspaceService) {
   }
 
-  @Get('')
+  @Get()
   async getAllWorkspace(): Promise<WorkspaceModel[]> {
     return this.workspaceService.getAllWorkspace();
   }
@@ -26,17 +27,20 @@ export class WorkspaceController {
     return this.workspaceService.getWorkspaceById(id);
   }
 
-  @Get('creator/:id')
-  async getWorkspaceCreateByUser(@Param('id') id): Promise<WorkspaceModel[]> {
-    return this.workspaceService.getWorkspaceCreateByUser(id);
+  @Get('user/creator')
+  async getWorkspaceCreateByUser(
+    @User() user: UserEntity
+  ): Promise<WorkspaceModel[]> {
+    return this.workspaceService.getWorkspaceCreateByUser(user.id);
   }
 
-  @Get('access/:id')
-  async getWorkspaceAccessByUser(@Param('id') id): Promise<WorkspaceModel[]> {
-    return this.workspaceService.getWorkspaceAccessByUser(id);
+  @Get('user/access')
+  async getWorkspaceAccessByUser(
+    @User() user: UserEntity
+  ): Promise<WorkspaceModel[]> {
+    return this.workspaceService.getWorkspaceAccessByUser(user.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   async createWorkspace(
     @User() user: UserEntity,
@@ -51,8 +55,8 @@ export class WorkspaceController {
     return null;
   }
 
-  @Delete(':id')
-  async deleteWorkspace(@Param('id') id): Promise<StatusModel> {
+  @Delete()
+  async deleteWorkspace(@Query('id') id): Promise<StatusModel> {
     return this.workspaceService.deleteWorkspace(id);
   }
 }

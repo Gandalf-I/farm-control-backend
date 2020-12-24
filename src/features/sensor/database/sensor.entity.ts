@@ -5,15 +5,15 @@ import { WorkspaceEntity } from '@features/workspace/database/workspace.entity';
 @Entity()
 export class SensorEntity extends AppBaseEntity {
 
-  @Column()
-  name: number;
+  @Column({default: 'Сенсор'})
+  name: string;
 
   @Column()
-  lat: number;
+  lat: string;
 
   @Column()
-  lng: number;
+  lng: string;
 
   @ManyToOne(() => WorkspaceEntity)
-  workspace: string;
+  workspaceId: string;
 }

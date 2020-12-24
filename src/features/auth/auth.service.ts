@@ -7,7 +7,6 @@ import { TokenModel } from '@app/features/auth/models/token.model';
 import { TokenContextModel } from '@app/features/auth/models/token-context.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '@features/user/database/user.repository';
-import { UserService } from '@features/user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +14,6 @@ export class AuthService {
   constructor(private jwtService: JwtService,
               @InjectRepository(UserRepository)
               private usersRepository: UserRepository,
-              private userService: UserService,
               ) {
   }
 

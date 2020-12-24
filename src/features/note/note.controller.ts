@@ -3,6 +3,7 @@ import { NoteService } from '@features/note/note.service';
 import { NoteModel } from '@features/note/models/note.model';
 import { NoteDto } from '@features/note/dto/note.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { StatusModel } from '@shared/models/status.model';
 
 @ApiTags('Note')
 @Controller('note/:id')
@@ -12,14 +13,14 @@ export class NoteController {
   }
 
   @Get()
-  getNote(@Param('id') id): Promise<NoteModel[]> {
-    return null;
+  getNotes(@Param('id') id): Promise<NoteModel[]> {
+    return this.noteService.getAllNote();
   }
 
   @Post()
-  addNote(@Param('id') id,
+  createNote(@Param('id') id,
           @Body() body: NoteDto): Promise<NoteModel> {
-    return null;
+    return this.noteService.createNote(body);
   }
 
   @Patch()
@@ -29,7 +30,7 @@ export class NoteController {
   }
 
   @Delete()
-  deleteNote(@Param('id') id): Promise<NoteModel> {
-    return null;
+  deleteNote(@Param('id') id): Promise<StatusModel> {
+    return this.noteService.deleteNote(id);
   }
 }

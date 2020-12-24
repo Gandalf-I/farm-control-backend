@@ -6,24 +6,16 @@ export class FieldDto {
   @IsString()
   name: string;
 
-  @IsNumber()
-  area: number;
+  area: string;
 
   @IsArray()
-  @IsNumber({},{each: true})
-  lat: number[];
-
-  @IsArray()
-  @IsNumber({},{each: true})
-  lng: number[];
+  points: string[];
 
   @IsOptional()
-  @IsDate()
-  sowingDate: Date;
+  sowingDate: string;
 
   @IsOptional()
-  @IsDate()
-  cleaningDate: Date;
+  cleaningDate: string;
 
   @IsOptional()
   @IsNumber()

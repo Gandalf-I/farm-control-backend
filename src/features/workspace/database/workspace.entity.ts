@@ -12,7 +12,6 @@ export class WorkspaceEntity extends AppBaseEntity {
   creatorId: number;
 
   @ManyToMany(() => UserEntity, user => user.id, {
-    cascade: true,
     eager: true,
   })
   @JoinTable()

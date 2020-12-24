@@ -5,24 +5,24 @@ import { SensorEntity } from '@features/sensor/database/sensor.entity';
 @Entity()
 export class MeasurementEntity extends AppBaseEntity {
 
-  @Column()
-  time: Date;
+  @Column({nullable: true})
+  time: string;
 
-  @Column()
+  @Column({nullable: true})
   illumination: number;
 
-  @Column()
+  @Column({nullable: true})
   airTemp: number;
 
-  @Column()
+  @Column({nullable: true})
   airHumidity: number;
 
-  @Column()
+  @Column({nullable: true})
   soilTemp: number;
 
-  @Column()
+  @Column({nullable: true})
   soilHumidity: number;
 
   @ManyToOne(() => SensorEntity)
-  sensor: string;
+  sensor: SensorEntity;
 }

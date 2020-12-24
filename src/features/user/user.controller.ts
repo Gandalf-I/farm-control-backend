@@ -4,14 +4,15 @@ import { UserService } from '@app/features/user/user.service';
 import { UserEntity } from '@app/features/user/database/user.entity';
 import { User } from '@app/shared/decorators/user.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
-// @UseGuards(JwtAuthGuard)
 @ApiTags('User')
 @Controller('user')
 export class UserController {
 
   constructor(private userService: UserService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async getUser(@User() user: UserEntity): Promise<UserModel> {
     return new UserModel(user);

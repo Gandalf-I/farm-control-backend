@@ -11,11 +11,13 @@ export class NoteDto {
   lat: number;
 
   @IsNumber()
-  lng: number;
+  lng: string;
 
+  @IsOptional()
   @IsEnum(NoteTypeEnum)
-  type: number;
+  type: string;
 
+  @IsOptional()
   @IsString()
   @MaxLength(1000)
   comment: string;

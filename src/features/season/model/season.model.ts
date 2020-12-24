@@ -3,8 +3,8 @@ import { SeasonEntity } from '@features/season/database/season.entity';
 
 export class SeasonModel extends BaseModel {
   name: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 
   constructor(entity: Partial<SeasonEntity> = {}) {
     super(entity);

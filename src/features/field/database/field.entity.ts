@@ -2,39 +2,37 @@ import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
 import { AppBaseEntity } from '@shared/database/entities/base.entity';
 import { WorkspaceEntity } from '@features/workspace/database/workspace.entity';
 import { CultureEntity } from '@features/culture/database/culture.entity';
+import { Point } from '@shared/interfaces/point.interface';
 
 @Entity()
 export class FieldEntity extends AppBaseEntity {
 
-  @Column()
+  @Column({default: 'Поле'})
   name: string;
 
-  @Column()
-  area: number;
+  @Column({type: 'real'})
+  area: string;
 
-  @Column("int", { array: true })
-  lat: number[];
+  @Column('text', { array: true })
+  points: string[];
 
-  @Column("int", { array: true })
-  lng: number[];
+  @Column({nullable: true})
+  sowingDate: string;
 
-  @Column()
-  sowingDate: Date;
+  @Column({nullable: true})
+  cleaningDate: string;
 
-  @Column()
-  cleaningDate: Date;
-
-  @Column()
+  @Column({nullable: true})
   averageYield: number;
 
-  @Column()
+  @Column({nullable: true})
   tempeAcc: number;
 
-  @Column()
+  @Column({nullable: true})
   moistureAcc: number;
 
   @OneToOne(() => CultureEntity, culture => culture.id)
-  culture: number;
+  culture: CultureEntity;
 
   @ManyToOne(() => WorkspaceEntity)
   workspace: number;

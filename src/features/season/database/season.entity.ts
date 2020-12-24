@@ -9,11 +9,13 @@ export class SeasonEntity extends AppBaseEntity {
   name: string;
 
   @Column()
-  startDate: Date;
+  startDate: string;
 
   @Column()
-  endDate: Date;
+  endDate: string;
 
-  @ManyToOne(() => WorkspaceEntity)
-  workspace: string;
+  @ManyToOne(() => WorkspaceEntity, workspace => workspace.id, {
+    eager: true,
+  })
+  workspace: WorkspaceEntity;
 }

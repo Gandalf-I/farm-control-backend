@@ -1,13 +1,14 @@
 import { IsDate, IsString, MinLength } from 'class-validator';
+import { BaseDto } from '@shared/dto/base.dto';
 
-export class SeasonDto {
+export class SeasonDto extends BaseDto{
   @IsString()
   @MinLength(3)
   name: string;
 
-  @IsDate()
-  startDate: Date;
+  @IsString()
+  startDate: string;
 
-  @IsDate()
-  endDate: Date;
+  @IsString()
+  endDate: string;
 }

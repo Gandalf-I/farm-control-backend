@@ -18,5 +18,5 @@ export class UserEntity extends AppBaseEntity {
     enum: UserTypeEnum,
     default: UserTypeEnum.User
   })
-  type: string;
+  type: UserTypeEnum;
 }

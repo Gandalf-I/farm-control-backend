@@ -4,6 +4,7 @@ import { FieldModel } from '@features/field/models/field.model';
 import { IdDto } from '@shared/dto/id.dto';
 import { FieldDto } from '@features/field/dto/field.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { StatusModel } from '@shared/models/status.model';
 
 @ApiTags('Field')
 @Controller('field')
@@ -18,8 +19,8 @@ export class FieldController {
   }
 
   @Get(':id')
-  async getField(@Param('id') id: IdDto): Promise<FieldModel> {
-    return this.fieldService.getField(id);
+  async getFields(@Param('id') id): Promise<FieldModel[]> {
+    return this.fieldService.getFields(id);
   }
 
   @Post()
@@ -33,8 +34,8 @@ export class FieldController {
   }
 
   @Delete(':id')
-  async deleteField(@Param('id') id: IdDto): Promise<FieldModel> {
-    return this.fieldService.getField(id);
+  async deleteField(@Param('id') id): Promise<StatusModel> {
+    return this.fieldService.deleteField(id);
   }
 
 }

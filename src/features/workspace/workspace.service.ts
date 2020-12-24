@@ -37,10 +37,9 @@ export class WorkspaceService {
   }
 
   async createWorkspace(body) {
-    console.log(body);
     const countWorkspaceUserCreated = (await this.getWorkspaceCreateByUser(body.creatorId)).length
 
-    if(countWorkspaceUserCreated > 5) {
+    if(countWorkspaceUserCreated >= 5) {
       throw new HttpException(
         'Max total workspaces equally 5',
         HttpStatus.FORBIDDEN,
